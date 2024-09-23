@@ -3,3 +3,5 @@ credentials.json
 token.json
 __pycache__/
 *.db
+.pytest_cache/
+.git/
