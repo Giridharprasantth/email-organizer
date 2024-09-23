@@ -1,0 +1,42 @@
+[
+    {
+        "rules": [
+            {
+                "field_name": "sender",
+                "predicate": "does not contain",
+                "value": "Twitch"
+            }
+        ],
+        "rule_predicate": "all",
+        "actions": [
+            {
+                "action_type": "move_to_mailbox",
+                "folder_name": "not_twitch"
+            }
+        ]
+    },
+    {
+        "rules": [
+            {
+                "field_name": "sender",
+                "predicate": "contains",
+                "value": "Reddit"
+            },
+            {
+                "field_name": "received_time",
+                "predicate": "is less than",
+                "value": "2 days"
+            }
+        ],
+        "rule_predicate": "all",
+        "actions": [
+            {
+                "action_type": "move_to_mailbox",
+                "folder_name": "reddit"
+            },
+            {
+                "action_type": "mark_as_read"
+            }
+        ]
+    }
+]

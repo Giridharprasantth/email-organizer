@@ -57,7 +57,10 @@ Before running the scripts, you need to set up authentication with Gmail API. Fo
 To run the scripts:
 
 ```
-python scripts/gmail_fetch.py
+python scripts/gmail_fetch.py --max_emails 100
+```
+
+```
 python scripts/gmail_rules_processor.py
 ```
 
@@ -78,3 +81,55 @@ The first time you run either script, it will prompt you to authorize the applic
 3. After authorization, the script will save the token for future use.
 
 The token will be stored in a file named `token.json` in the project directory. This file allows the scripts to access your Gmail account without requiring re-authorization each time.
+
+# Email Rules System: Value Table
+
+This table provides a quick reference for all possible values for `rules.json`.
+
+| Enumeration     | Value            | Description                                    |
+| --------------- | ---------------- | ---------------------------------------------- |
+| FieldName       | sender           | The email sender                               |
+|                 | recipient        | The email recipient                            |
+|                 | subject          | The email subject                              |
+|                 | message          | The email body                                 |
+|                 | received_time    | The time the email was received                |
+| StringPredicate | contains         | Check if a string contains a substring         |
+|                 | does not contain | Check if a string does not contain a substring |
+|                 | equals           | Check if two strings are exactly equal         |
+|                 | does not equal   | Check if two strings are not equal             |
+| DatePredicate   | is less than     | Check if a date is earlier than a given date   |
+|                 | is greater than  | Check if a date is later than a given date     |
+| RulePredicate   | all              | All rules must be true                         |
+|                 | any              | At least one rule must be true                 |
+| ActionType      | mark_as_read     | Mark the email as read                         |
+|                 | mark_as_unread   | Mark the email as unread                       |
+|                 | move_to_mailbox  | Move the email to a specified mailbox          |
+
+## Example JSON
+
+```json
+{
+  "rules": [
+    {
+      "field_name": "subject",
+      "predicate": "contains",
+      "value": "Important"
+    },
+    {
+      "field_name": "received_time",
+      "predicate": "is less than",
+      "value": "2 days"
+    }
+  ],
+  "rule_predicate": "all",
+  "actions": [
+    {
+      "action_type": "move_to_mailbox",
+      "folder_name": "Priority"
+    },
+    {
+      "action_type": "mark_as_read"
+    }
+  ]
+}
+```
