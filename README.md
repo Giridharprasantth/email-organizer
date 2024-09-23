@@ -52,6 +52,7 @@ Before running the scripts, you need to set up authentication with Gmail API. Fo
 2. Create credentials (OAuth 2.0 Client ID) for a desktop application.
 3. Download the credentials file and rename it to `credentials.json`.
 4. Place `credentials.json` in the root directory of the project.
+5. For gmail rules processor create your rules in `rules.json` file then execute the script.
 
 To run the scripts:
 
