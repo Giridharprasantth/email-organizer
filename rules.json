@@ -1,0 +1,16 @@
+{
+    "rules": [
+        {
+            "field_name": "sender",
+            "predicate": "does not contain",
+            "value": "Twitch"
+        }
+    ],
+    "rule_predicate": "all",
+    "actions": [
+        {
+            "action_type": "move_to_mailbox",
+            "folder_name": "not_twitch"
+        }
+    ]
+}
